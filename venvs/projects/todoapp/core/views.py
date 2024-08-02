@@ -13,3 +13,6 @@ def get_all_patient(request):
     }
 
     return render(request=request, template_name='patient.html', context=context)
+
+def todo_list(request):
+    return render(request=request, template_name='todolist.html')

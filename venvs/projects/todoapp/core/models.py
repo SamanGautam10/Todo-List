@@ -27,3 +27,13 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.d_name
+
+# todo list
+class Task(models.Model):
+    taskId = models.AutoField(primary_key=True)
+    task = models.CharField(max_length=1500, null=True, blank=False, verbose_name='Add your task')
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return print(f"{self.taskId} - {self.start_date}")

@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home, name="homepage"),
     path("all/patient", get_all_patient, name="all_patient"),
+    path("todo-list", todo_list, name="todo_list"),
 ]

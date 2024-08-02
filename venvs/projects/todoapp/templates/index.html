@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Option Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .btn-custom {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #000;
+            border: 2px solid #fff;
+            transition: 0.5s;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .btn-custom:hover {
+            color: #000;
+            background-color: #fff;
+        }
+        .btn-custom:hover:before {
+            border-color: #00ff00;
+            box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+        }
+    </style>
 </head>
 <body>
-    <h1>Home Page</h1>
-    <a href="{% url 'all_patient' %}">Click here</a>
+    <div class="container col-6 mx-auto text-center mt-5">
+        <h1>Choose the option</h1>
+        <a href="{% url 'all_patient' %}" class="mt-4 btn btn-custom">Patient Details</a>
+        <a href="{% url 'todo_list' %}" class="ml-4 mt-4 btn btn-custom">Todo List</a>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
