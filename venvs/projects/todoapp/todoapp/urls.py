@@ -23,4 +23,6 @@ urlpatterns = [
     path("", home, name="homepage"),
     path("all/patient", get_all_patient, name="all_patient"),
     path("todo-list", todo_list, name="todo_list"),
+    path("save/task", save_todo_list, name="save_task"),
+    path("import/task", import_task, name="import_task"),
 ]

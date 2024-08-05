@@ -36,4 +36,4 @@ class Task(models.Model):
     end_date = models.DateField()
 
     def __str__(self):
-        return print(f"{self.taskId} - {self.start_date}")
+        return f"{self.task} - {self.start_date}"

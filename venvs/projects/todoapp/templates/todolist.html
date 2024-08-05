@@ -71,35 +71,46 @@
       <h1 class="text-center">Todo List</h1>
       <div class="form-container">
         <h2 class="text-center">Enter the task to be done</h2>
-        <form id="todoForm">
+
+        {% comment %} Form for todolist insertion {% endcomment %}
+        <form id="todoForm" method="POST" action="{% url 'save_task' %}">
+          {% csrf_token %}
           <div class="form-group">
             <label for="task">Task</label>
-            <textarea class="form-control" id="task" placeholder="Enter task" name="task-name" required></textarea>
+            <textarea class="form-control" id="task" placeholder="Enter task" name="task" required></textarea>
           </div>
           <div class="date-fields">
             <div class="form-group">
               <label for="startdate">Start Date</label>
-              <input type="date" class="form-control" id="startdate" min="2024-06-15" name="start-date" required />
+              <input type="date" class="form-control" id="startdate" min="2024-06-15" name="startdate" required />
             </div>
             <div class="form-group">
               <label for="enddate">End Date</label>
-              <input type="date" class="form-control" id="enddate" name="end-date" required />
+              <input type="date" class="form-control" id="enddate" name="enddate" required />
             </div>
           </div>
           <input type="submit" style="height: 0px; width: 0px; border: none; padding: 0px;" hidefocus="true" />
         </form>
       </div>
 
+      {% comment %} Task list here {% endcomment %}
       <div class="task-list" id="taskList">
         <h2 class="text-center pt-3 pb-2">Task to be done</h2>
+        <a href="{% url 'import_task' %}"><h3 class="text-center pt-3 pb-2">Click here for task</h3></a>
         <!-- Tasks from the database will be listed here -->
+
+        {% for i in details %}
+
         <div class="task-item mb-4"> <!-- Added margin-top -->
-          <p class="pb-2">Task No 1</p>
+          <p class="pb-2">{{i.task}}</p>
           <div class="date-fields">
-            <p>Start Date: YYYY-MM-DD</p>
-            <p>End Date: YYYY-MM-DD</p>
+            <p>Start Date: {{i.start_date}}</p>
+            <p>End Date: {{i.end_date}}</p>
           </div>
         </div>
+        
+        {% endfor %}
+
       </div>
     </div>
 
