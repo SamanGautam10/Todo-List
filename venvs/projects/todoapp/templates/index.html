@@ -7,6 +7,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        {% load static %}
+        body{
+            background-image: url("{% static 'images/bg-image.jpg' %}");
+        }
         h1 {
             font-family: 'Courier New', Courier, monospace;
         }
