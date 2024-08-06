@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from core.models import *
 
 # Create your views here.
@@ -31,7 +32,7 @@ def save_todo_list(request):
         # creating taskName instance and saving in database
         taskName = Task(task = task, start_date = startdate, end_date = enddate)
         taskName.save()
-        return render(request=request, template_name='todolist.html')
+        return HttpResponseRedirect(reverse('import_task')) # sending redirect to views.import_task
     
     else:
         return HttpResponse("Error inserting data")
@@ -46,3 +47,10 @@ def import_task(request):
     }
 
     return render(request=request, template_name='todolist.html', context=context)
+
+# taking taskId as parameter to delete desired task
+def delete_task(request, taskId):
+    task = Task.objects.get(taskId = taskId)
+    task.delete()
+    # sending redirect to views.import_task after deletion of the task
+    return HttpResponseRedirect(reverse('import_task')) 

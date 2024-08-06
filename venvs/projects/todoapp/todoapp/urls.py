@@ -24,5 +24,6 @@ urlpatterns = [
     path("all/patient", get_all_patient, name="all_patient"),
     path("todo-list", todo_list, name="todo_list"),
     path("save/task", save_todo_list, name="save_task"),
-    path("import/task", import_task, name="import_task"),
+    path("todo-list-tasks", import_task, name="import_task"),
+    path("delete/task/<int:taskId>", delete_task, name="delete_task"),  # sending taskId to views
 ]
