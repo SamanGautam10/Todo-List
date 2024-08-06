@@ -7,76 +7,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-    <style>
-      body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: #f0f0f0;
-        padding: 20px;
-      }
-      .form-container {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: 20px auto;
-        max-width: 500px;
-        height: auto;
-      }
-      textarea.form-control {
-        resize: none;
-        height: 87px; /* Makes the textarea larger */
-      }
-      .btn-custom {
-        border-radius: 25px;
-        background-color: #007bff;
-        color: #ffffff;
-      }
-      .task-list {
-        background-color: #F7EBEB;
-        border-radius: 25px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
-      }
-      .task-item {
-        background-color: #ffffff;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        margin: auto;
-      }
-      .date-fields {
-        display: flex;
-        justify-content: space-between;
-      }
-      .date-fields .form-group {
-        flex: 0 0 48%;
-      }
-      .task-item h3 {
-        font-size: 1.25rem;
-        margin-bottom: 10px;
-      }
-      .task-item p {
-        margin-bottom: 5px;
-      }
-      .date-fields {
-        font-size: 0.9rem;
-      }
-      label {
-        font-size: 18px;
-      }
-    </style>
+    <link href="../static/css/stylesheet.css" rel="stylesheet" />
   </head>
   <body>
+    {% load static %}
     <div class="container">
       <h1 class="text-center">Todo List</h1>
-      <div class="form-container">
+      <div class="form-container pb-2">
         <h2 class="text-center">Enter the task to be done</h2>
 
-        {% comment %} Form for todolist insertion {% endcomment %}
+        {% comment %}Form for todolist insertion{% endcomment %}
         <form id="todoForm" method="POST" action="{% url 'save_task' %}">
           {% csrf_token %}
           <div class="form-group">
-            <label for="task">Task</label>
             <textarea class="form-control" id="task" placeholder="Enter task" name="task" required></textarea>
           </div>
           <div class="date-fields">
@@ -93,26 +36,45 @@
         </form>
       </div>
 
-      {% comment %} Task list here {% endcomment %}
-      <div class="task-list" id="taskList">
+      {% comment %}Task list here{% endcomment %}
+      <div class="task-list pb-1 mt-4 mb-4" id="taskList">
         <h2 class="text-center pt-3 pb-2">Task to be done</h2>
-        <a href="{% url 'import_task' %}"><h3 class="text-center pt-3 pb-2">Click here for task</h3></a>
+
+        {% comment %}declaring url of todo list to todo_list{% endcomment %}
+        {% url 'todo_list' as todo_list %}
+
+        {% comment %}this anchor is shown only if the website is in path 'Domain/todo-list/'{% endcomment %}
+        {% if request.path == todo_list %}
+          <a href="{% url 'import_task' %}"><h3 class="text-center pt-3 pb-2">Click here for task</h3></a>
+        {% endif %}
+
         <!-- Tasks from the database will be listed here -->
-
         {% for i in details %}
-
-        <div class="task-item mb-4"> <!-- Added margin-top -->
-          <p class="pb-2">{{i.task}}</p>
-          <div class="date-fields">
-            <p>Start Date: {{i.start_date}}</p>
-            <p>End Date: {{i.end_date}}</p>
-            <a href="#">Edit Task</a> 
-            <a href="delete/task/{{i.taskId}}">Delete Task</a> 
+          <div class="task-item mb-4">
+            <!-- Added margin-top -->
+            <p class="pb-2">{{ i.task }}</p>
+            <div class="date-fields">
+              <p>Start Date: {{ i.start_date }}</p>
+              <p>End Date: {{ i.end_date }}</p>
+              <a href="#">Edit Task</a>
+              <a href="delete/task/{{ i.taskId }}">Delete Task</a>
+            </div>
           </div>
-        </div>
-        
         {% endfor %}
+      </div>
+    </div>
 
+    <div class="footer-div text-center">
+      <div class="p-2 mt-2 mb-2 bg-white text-dark">
+        <div class="mt-3">
+          <footer class="h4">&copy; Author of the Project - Saman Gautam</footer>
+        </div>
+        <div class="d-inline text-center mr-5 social-link">
+          <a href="https://github.com/SamanGautam10" target="_blank"><img src="{% static 'images/github.png' %}" alt="GitHub Profile"/></a>
+        </div>
+        <div class="d-inline text-center social-link">
+          <a href="https://www.linkedin.com/in/saman-gautam-288b26281/" target="_blank"><img src="{% static 'images/linkedin.png' %}" alt="GitHub Profile"/></a>
+        </div>
       </div>
     </div>
 

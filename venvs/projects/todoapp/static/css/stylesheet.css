@@ -1,0 +1,78 @@
+body {
+    background-image: url("../images/bg-image.jpg");
+    background-size: cover;
+    background-repeat: inherit;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    max-width: 500px;
+    height: auto;
+}
+
+textarea.form-control {
+    resize: none;
+    height: 87px;
+    /* Makes the textarea larger */
+}
+
+.btn-custom {
+    border-radius: 25px;
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.task-list {
+    background-color: #F7EBEB;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)
+}
+
+.task-item {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: auto;
+}
+
+.date-fields {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-fields .form-group {
+    flex: 0 0 48%;
+}
+
+.task-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.task-item p {
+    margin-bottom: 5px;
+}
+
+.date-fields {
+    font-size: 0.9rem;
+}
+
+label {
+    font-size: 18px;
+}
+
+.social-link img {
+    border: 1px solid white;
+    border-radius: 100px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.877);
+    width: 60px;
+}
