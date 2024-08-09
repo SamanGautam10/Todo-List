@@ -57,9 +57,7 @@ def delete_task(request, taskId):
     # sending redirect to views.import_task after deletion of the task
     return HttpResponseRedirect(reverse('import_task')) 
 
-def edit_task(request, taskId):
-    return render(request=request, template_name="todolist.html")
-
+# creation of form using forms.py
 def form_task(request):
     s = addTask()
     if request.method == "POST":
@@ -73,3 +71,25 @@ def form_task(request):
     }
 
     return render(request=request, template_name="form.html", context=context)
+
+def update(request, taskId):
+    task = Task.objects.get(taskId = taskId)
+    context = {
+        'task': task
+    }
+    return render(request=request, template_name="update.html", context=context)
+
+def update_save(request, taskId):
+    if request.method == "POST":
+        task_new = request.POST.get('task')
+        start_date_new = request.POST.get('startdate')
+        end_date_new = request.POST.get('enddate')
+
+        update_set = Task.objects.get(taskId = taskId)
+
+        update_set.task = task_new
+        update_set.start_date = start_date_new
+        update_set.end_date = end_date_new
+        update_set.save()
+
+        return redirect('import_task')

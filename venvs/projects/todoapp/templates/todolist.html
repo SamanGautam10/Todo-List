@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,10 +8,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="../static/css/stylesheet.css" rel="stylesheet" />
+    <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet" />
   </head>
   <body>
-    {% load static %}
+    
     <div class="container">
       <h1 class="text-center">Todo List</h1>
       <div class="form-container pb-2">
@@ -56,7 +57,7 @@
             <div class="date-fields">
               <p>Start Date: {{ i.start_date }}</p>
               <p>End Date: {{ i.end_date }}</p>
-              <a href="#">Edit Task</a>
+              <a href="edit/task/{{i.taskId}}/">Edit Task</a>
               <a href="delete/task/{{ i.taskId }}">Delete Task</a>
             </div>
           </div>
@@ -64,7 +65,7 @@
       </div>
     </div>
 
-    <div class="footer-div text-center">
+    <div class="footer text-center">
       <div class="p-2 mt-2 mb-2 bg-white text-dark">
         <div class="mt-3">
           <footer class="h4">&copy; Author of the Project - Saman Gautam</footer>
