@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from core.models import *
+from core.forms import *
+from django.shortcuts import redirect
 
 # Create your views here.
 def home(request):
@@ -54,3 +56,20 @@ def delete_task(request, taskId):
     task.delete()
     # sending redirect to views.import_task after deletion of the task
     return HttpResponseRedirect(reverse('import_task')) 
+
+def edit_task(request, taskId):
+    return render(request=request, template_name="todolist.html")
+
+def form_task(request):
+    s = addTask()
+    if request.method == "POST":
+        s = addTask(request.POST)
+
+        if s.is_valid():
+            return redirect('form_task')
+    
+    context = {
+        's': s
+    }
+
+    return render(request=request, template_name="form.html", context=context)

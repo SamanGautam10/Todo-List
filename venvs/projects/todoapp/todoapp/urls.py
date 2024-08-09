@@ -26,4 +26,6 @@ urlpatterns = [
     path("save/task", save_todo_list, name="save_task"),
     path("todo-list-tasks", import_task, name="import_task"),
     path("delete/task/<int:taskId>", delete_task, name="delete_task"),  # sending taskId to views
+    # path("", edit_task, name="edit_task"),
+    path("form/task", form_task, name="form_task")
 ]
