@@ -72,6 +72,7 @@ def form_task(request):
 
     return render(request=request, template_name="form.html", context=context)
 
+# sending values to update.html file after clicking edit button
 def update(request, taskId):
     task = Task.objects.get(taskId = taskId)
     context = {
@@ -79,6 +80,7 @@ def update(request, taskId):
     }
     return render(request=request, template_name="update.html", context=context)
 
+# logic to edit existing data from database using form
 def update_save(request, taskId):
     if request.method == "POST":
         task_new = request.POST.get('task')

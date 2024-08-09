@@ -25,12 +25,16 @@ urlpatterns = [
     path("todo-list", todo_list, name="todo_list"),
     path("save/task", save_todo_list, name="save_task"),
 
+    # url to import task list from database to html page
     path("todo-list-tasks", import_task, name="import_task"),
 
+    # url for delete function
     path("delete/task/<int:taskId>", delete_task, name="delete_task"),  # sending taskId to views
 
+    # testing forms.py of django
     path("form/task", form_task, name="form_task"),
 
-    path("edit/task/<int:taskId>/", update, name="task_list"),
+    # url path for edit task functions
+    path("edit/task/<int:taskId>/", update, name="task_list"), 
     path("edit/save_edit/<int:taskId>/", update_save, name="update_save"),
 ]
